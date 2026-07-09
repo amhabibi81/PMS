@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "سیستم مدیریت پروژه",
+    "tagline": "ساده‌تر از جیرا"
+  },
+  "nav": {
+    "dashboard": "داشبورد",
+    "projects": "پروژه‌ها",
+    "notifications": "اعلان‌ها",
+    "logout": "خروج",
+    "language": "زبان"
+  },
+  "auth": {
+    "login": "ورود",
+    "register": "ثبت‌نام",
+    "username": "نام کاربری",
+    "password": "رمز عبور",
+    "email": "ایمیل",
+    "firstName": "نام",
+    "lastName": "نام خانوادگی",
+    "loginSubmit": "ورود",
+    "registerSubmit": "ساخت حساب",
+    "haveAccount": "حساب دارید؟ وارد شوید",
+    "noAccount": "حساب ندارید؟ ثبت‌نام کنید",
+    "loginFailed": "نام کاربری یا رمز اشتباه است",
+    "registerSuccess": "حساب ساخته شد، وارد شوید",
+    "passwordMin": "رمز باید حداقل ۸ کاراکتر باشد"
+  },
+  "common": {
+    "loading": "در حال بارگذاری...",
+    "empty": "موردی یافت نشد",
+    "save": "ذخیره",
+    "cancel": "انصراف",
+    "create": "ایجاد",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "search": "جستجو",
+    "back": "بازگشت",
+    "confirm": "تایید",
+    "error": "خطا",
+    "retry": "تلاش مجدد"
+  },
+  "project": {
+    "title": "عنوان",
+    "description": "توضیحات",
+    "status": "وضعیت",
+    "startDate": "تاریخ شروع",
+    "dueDate": "مهلت",
+    "progress": "پیشرفت",
+    "members": "اعضا",
+    "tasks": "وظایف",
+    "new": "پروژه جدید",
+    "membersCount": "اعضا",
+    "tasksCount": "وظایف"
+  },
+  "task": {
+    "title": "عنوان",
+    "status": "وضعیت",
+    "priority": "اولویت",
+    "assignee": "مسئول",
+    "dueDate": "مهلت",
+    "progress": "پیشرفت",
+    "comments": "نظرات",
+    "addComment": "افزودن نظر",
+    "transitionFailed": "انتقال مجاز نیست",
+    "illegalTransition": "این انتقال وضعیت مجاز نیست"
+  },
+  "status": {
+    "Todo": "در صف",
+    "InProgress": "در حال انجام",
+    "Review": "بازبینی",
+    "Done": "انجام شده"
+  },
+  "priority": {
+    "Low": "کم",
+    "Medium": "متوسط",
+    "High": "زیاد",
+    "Urgent": "فوری"
+  },
+  "report": {
+    "statusDistribution": "توزیع وضعیت وظایف",
+    "progressOverTime": "پیشرفت در زمان",
+    "workload": "بار کاری اعضا",
+    "overdue": "وظایف عقب‌افتاده",
+    "exportCsv": "خروجی CSV",
+    "exportPdf": "خروجی PDF",
+    "onTrack": "در مسیر",
+    "atRisk": "در خطر",
+    "daysLate": "روز تأخیر"
+  },
+  "notification": {
+    "title": "اعلان‌ها",
+    "markRead": "خوانده شد",
+    "markAllRead": "همه خوانده شد",
+    "empty": "اعلانی نیست"
+  }
+}

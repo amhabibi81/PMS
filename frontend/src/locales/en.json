@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "Project Management System",
+    "tagline": "Simpler than Jira"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "notifications": "Notifications",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "loginSubmit": "Log in",
+    "registerSubmit": "Create account",
+    "haveAccount": "Have an account? Log in",
+    "noAccount": "No account? Register",
+    "loginFailed": "Invalid username or password",
+    "registerSuccess": "Account created, please log in",
+    "passwordMin": "Password must be at least 8 characters"
+  },
+  "common": {
+    "loading": "Loading...",
+    "empty": "Nothing here yet",
+    "save": "Save",
+    "cancel": "Cancel",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "back": "Back",
+    "confirm": "Confirm",
+    "error": "Error",
+    "retry": "Retry"
+  },
+  "project": {
+    "title": "Title",
+    "description": "Description",
+    "status": "Status",
+    "startDate": "Start date",
+    "dueDate": "Due date",
+    "progress": "Progress",
+    "members": "Members",
+    "tasks": "Tasks",
+    "new": "New project",
+    "membersCount": "members",
+    "tasksCount": "tasks"
+  },
+  "task": {
+    "title": "Title",
+    "status": "Status",
+    "priority": "Priority",
+    "assignee": "Assignee",
+    "dueDate": "Due date",
+    "progress": "Progress",
+    "comments": "Comments",
+    "addComment": "Add comment",
+    "transitionFailed": "Transition failed",
+    "illegalTransition": "That status transition is not allowed"
+  },
+  "status": {
+    "Todo": "To Do",
+    "InProgress": "In Progress",
+    "Review": "Review",
+    "Done": "Done"
+  },
+  "priority": {
+    "Low": "Low",
+    "Medium": "Medium",
+    "High": "High",
+    "Urgent": "Urgent"
+  },
+  "report": {
+    "statusDistribution": "Task status distribution",
+    "progressOverTime": "Progress over time",
+    "workload": "Member workload",
+    "overdue": "Overdue tasks",
+    "exportCsv": "Export CSV",
+    "exportPdf": "Export PDF",
+    "onTrack": "On Track",
+    "atRisk": "At Risk",
+    "daysLate": "days late"
+  },
+  "notification": {
+    "title": "Notifications",
+    "markRead": "Mark read",
+    "markAllRead": "Mark all read",
+    "empty": "No notifications"
+  }
+}

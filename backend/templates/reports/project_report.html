@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ project.title }} — Project Report</title>
+<style>
+  body { font-family: DejaVu Sans, sans-serif; color: #222; margin: 24px; }
+  h1 { color: #1d4ed8; margin-bottom: 4px; }
+  .meta { color: #6b7280; font-size: 12px; margin-bottom: 24px; }
+  .card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .badge { padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .ontrack { background: #dcfce7; color: #166534; }
+  .atrisk { background: #fee2e2; color: #991b1b; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th, td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; font-size: 13px; }
+  th { background: #f3f4f6; }
+</style>
+</head>
+<body>
+  <h1>{{ project.title }}</h1>
+  <div class="meta">
+    Generated: {{ generated_at|date:"Y-m-d H:i" }} &middot;
+    Status: {{ project.status }} &middot;
+    Due: {{ project.due_date|default:"—" }}
+  </div>
+
+  <div class="card">
+    <strong>Summary</strong> &middot;
+    Progress: {{ summary.progress }}% &middot;
+    Tasks: {{ summary.total_tasks }} ({{ summary.done_tasks }} done) &middot;
+    Overdue: {{ summary.overdue_count }}
+    <span class="badge {% if summary.at_risk %}atrisk{% else %}ontrack{% endif %}">
+      {{ summary.flag }}
+    </span>
+  </div>
+
+  <div class="card">
+    <strong>Task status distribution</strong>
+    <table>
+      <tr><th>Status</th><th>Count</th></tr>
+      {% for row in status_distribution %}
+        <tr><td>{{ row.status }}</td><td>{{ row.count }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="card">
+    <strong>Workload per member</strong>
+    <table>
+      <tr><th>Username</th><th>Open tasks</th><th>Overdue</th></tr>
+      {% for row in workload %}
+        <tr><td>{{ row.username }}</td><td>{{ row.open_tasks }}</td><td>{{ row.overdue_tasks }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="card">
+    <strong>Overdue tasks</strong>
+    <table>
+      <tr><th>Title</th><th>Assignee</th><th>Due</th><th>Days late</th></tr>
+      {% for row in overdue %}
+        <tr><td>{{ row.title }}</td><td>{{ row.assignee|default:"—" }}</td><td>{{ row.due_date }}</td><td>{{ row.days_late }}</td></tr>
+      {% empty %}
+        <tr><td colspan="4">No overdue tasks.</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>
