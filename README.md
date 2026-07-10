@@ -182,25 +182,27 @@ Run the backend and frontend in two separate terminals. Uses SQLite, so no Postg
 **Terminal 1 — Backend:**
 ```bash
 cd backend
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\Activate.ps1            # activate venv (Git Bash: source .venv/bin/activate)
 pip install -r requirements.txt
 
-# Use the bundled SQLite settings (no Postgres required)
-# Windows (cmd):  set DJANGO_SETTINGS_MODULE=config.settings_local
-# bash / PowerShell: export DJANGO_SETTINGS_MODULE=config.settings_local
+# Bundled SQLite settings (no Postgres required)
+$env:DJANGO_SETTINGS_MODULE = "config.settings_local"
 python manage.py migrate
 python manage.py seed_demo
-python manage.py runserver
+python manage.py runserver 127.0.0.1:8000     # if 8000 is reserved, use 8088 (see Troubleshooting)
 ```
 
 **Terminal 2 — Frontend:**
 ```bash
 cd frontend
 npm install
+# If the backend is NOT on 8000, set the port here too:
+$env:VITE_BACKEND_PORT = "8000"               # change to "8088" if you used 8088 above
 npm run dev
 ```
 
-Open http://localhost:5173 — the Vite dev server proxies `/api` requests to `http://localhost:8000` automatically.
+Open http://localhost:5173 — the Vite dev server proxies `/api` requests to the backend (default `http://localhost:8000`, or `$VITE_BACKEND_PORT` if set).
 
 > The local-run settings file is [`backend/config/settings_local.py`](backend/config/settings_local.py). It uses SQLite and a local email backend; everything else matches the Docker setup.
 
@@ -318,6 +320,25 @@ Environment variables (set in `docker-compose.yml` or `backend/.env`):
 ## Troubleshooting
 
 **Port already in use (5173 / 5432 / 8000):** stop the conflicting process, or change the port mapping in `docker-compose.yml`.
+
+**`Error: You don't have permission to access that port` on Windows (local run):** Windows (often via Hyper-V / WSL2) reserves ranges of TCP ports that apps cannot bind to -- port 8000 is a common victim. Check the reserved ranges:
+```
+netsh interface ipv4 show excludedportrange protocol=tcp
+```
+If `8000` is inside any listed range, run the backend on a free port (e.g. `8088`) and tell the frontend about it:
+```powershell
+# Terminal 1 (backend)
+$env:DJANGO_SETTINGS_MODULE = "config.settings_local"
+python manage.py runserver 127.0.0.1:8088
+# Terminal 2 (frontend)
+$env:VITE_BACKEND_PORT = "8088"
+npm run dev
+```
+(To permanently free a reserved range you can disable Hyper-V autostart and reboot, but using an alternate port is the simpler fix.)
+
+**`.venv\Scripts\Activate.ps1` errors with "running scripts is disabled":** PowerShell's execution policy blocks the activate script. Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, then retry. Or skip activation and call `.venv\Scripts\python.exe` and `.venv\Scripts\pip.exe` directly.
+
+**`ModuleNotFoundError: No module named 'django'` after install:** the venv wasn't activated when `pip install` ran. Either activate first, or install explicitly into the venv: `.venv\Scripts\python.exe -m pip install -r requirements.txt`.
 
 **Backend container fails to start:** check logs with `docker compose logs backend`. Most often a missing env var or a port conflict with another Postgres.
 
